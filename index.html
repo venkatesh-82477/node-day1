@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node day1</title>
+</head>
+<body>
+    <h3>1.What is node.js ?</h3>
+    <p>A. Node.js is a open source,cross-platform,javascript runtime environment built on chrome's v8 javascript engine that executes the javascript code outside a web browser.</p>
+    <h3>2.What is NPM?</h3>
+    <p>NPM stands for node package manager.NPM is the default package manager for js runtime environment node.js.
+    It is also called as "Ninja Pumpkin Mutants".<br>* NPM consists of two main parts.<br>
+    1.command line interface - tool for publishing and downloading packages.<br>
+    2.Another one is an online repository that hosts js packages.
+    </p>
+    <h3>3.What are the modules in Node.js?</h3>
+    <p>A. In node.js application, a module can be considered as a block of code that provide a simple or complex functionality that can communicate with external application.<br>
+    There are 3-types of modules in node.js,<br>
+    1.Core modules,<br>
+    2.Local modules,<br>
+    3.Third party modules.<br>
+    <strong>* Core modules :</strong>
+    Core modules is by default which will comes under the node.js.<br>
+    <strong>* Local modules :</strong>
+    Unlike built-in and external modules, local modules are created locally in your Node.js application. Let’s create a simple calculating module that calculates various operations.<br>
+    <strong>* Third-party modules:</strong>
+     Third-party modules are modules that are available online using the Node Package Manager(NPM). These modules can be installed in the project folder or globally. Some of the popular third-party modules are mongoose, express, angular, and react.
+    </p>
+    <h3>4.What is the purpose of the module.exports?</h3>
+    <p>A.The main purpose of module.exports is to achieve modular programming. Modular programming refers to separating the functionality of a program into independent, interchangeable modules, such that each contains everything necessary to execute only one aspect of the desired functionality. By not using module.exports it becomes difficult to write a large program without modular/reusable code.</p>
+    <h3>5.Difference between default export and named export ?</h3>
+    <p>A.<strong>Named Export:</strong> With named exports, one can have multiple named exports per file. Then import the specific exports they want surrounded in braces. The name of imported module has to be the same as the name of the exported module.<br>
+        <strong>Default Export: </strong>
+        One can have only one default export per file. When we import we have to specify a name and import.
+    </p>
+    <h3>6.How do you import any module in Node.js ?</h3>
+    <p>A.To import our own Node JS module. var arthmetic = require("arthmetic");</p>
+    <h3>7.What are the different types of HTTP requests?</h3>
+    <p>A. HTTP (Hypertext Transfer Protocol) specifies a collection of request methods to specify what action is to be performed on a particular resource. The most commonly used HTTP request methods are GET, POST, PUT, PATCH, and DELETE. These are equivalent to the CRUD operations (create, read, update, and delete).
+    </p>
+    <h3>8.Explain the concept of middleware in Node.js., Create a middleware which will be applicable to all the routes </h3>
+    <p>A. <strong>Middleware :</strong>Middleware functions are functions that have access to the request object ( req ), the response object ( res ), and the next middleware function in the application's request-response cycle. The next middleware function is commonly denoted by a variable named next .<br>
+    <pre>
+const express = require("express");
+const app = express();
+
+const firstMiddleware =(req,res,next)=>{
+    console.log("This is the first middleware");
+    next();
+}
+const secondMiddleware =(req,res,next)=>{
+    console.log("This is the second middleware");
+    next();
+}
+
+app.use(firstMiddleware);
+
+app.get("/page1",function(req,res){
+    console.log("This is the first middleware");
+    res.send("<h2>Here we are executing first middleware</h2>")
+})
+app.get("/page2",secondMiddleware,function(req,res){
+    console.log("This is the first and second middleware");
+    res.send("<h2>Here we are executing first and second middleware</h2>")
+})
+app.get("/page3",secondMiddleware,function(req,res){
+    console.log("This is the first and second middleware");
+    res.send("<h2>Here we are executing first and second middleware</h2>")
+})
+app.get("/page4",function(req,res){
+    console.log("This is the first middleware");
+    res.send("<h2>Here we are executing first middleware</h2>")
+})
+
+app.listen(5550,function(){
+    console.log("Server is started at port 5550");
+})
+</pre>
+</p>
+</body>
+</html>
